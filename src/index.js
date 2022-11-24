@@ -1,17 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, {useState} from 'react'
+import './styles.css'
+import {createRoot} from 'react-dom/client'
+// import {Router} from '@reach/router' 
+import SearchParams from './searchParams'
+import ThemeContext from './ThemeContext'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+const App = () => {
+    // return React.createElement(
+    //     'div',
+    //     {},
+    //     [ React.createElement( 'h1', {}, 'Adopt Me!'),
+    //       React.createElement(Pet, {
+    //         name: "Lucy", 
+    //         animal: 'Dog', 
+    //         color: 'Blue'
+    //     }),
+    //       React.createElement(Pet, {
+    //         name: "Bingo", 
+    //         animal: 'Dog', 
+    //         color: 'White'
+    //     })
+
+    // ])
+
+    const themeHook = useState('darkblue')
+
+    return(
+      <React.StrictMode>
+        < ThemeContext.Provider value={themeHook}>
+        <div>
+            <h1>Adopt Me!!</h1>,
+            <SearchParams />
+        </div>
+        </ThemeContext.Provider>
+      </React.StrictMode>
+    )
+} 
+
+const container = document.getElementById('root')
+const root = createRoot(container)
+root.render( <App />);
+
+// render(
+//     <App />,document.getElementById('root')
+// )
